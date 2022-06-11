@@ -1,5 +1,4 @@
-import 'package:calc/Calculator/Operations/Interfaces/operations.dart';
-
+import '../Interfaces/operations.dart';
 import '../Interfaces/double_operand_operation.dart';
 import '../Interfaces/number.dart';
 
