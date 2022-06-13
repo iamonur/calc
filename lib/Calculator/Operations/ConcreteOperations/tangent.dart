@@ -3,8 +3,8 @@ import '../Interfaces/single_operand_operation.dart';
 import '../Interfaces/number.dart';
 import 'dart:math';
 
-class Cotangent extends SingleOperandOperation {
-  Cotangent(Operation op) : super(op);
+class Tangent extends SingleOperandOperation {
+  Tangent(Operation op) : super(op);
 
   @override
   Operation operate() {
