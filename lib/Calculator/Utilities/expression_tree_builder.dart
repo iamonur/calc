@@ -82,7 +82,6 @@ Operation getOp(String opname, Operation operand1,
 
 Operation buildTreeFromRPN(Queue<String> tokens) {
   Stack<Operation> st = Stack<Operation>();
-  Queue<String> output;
 
   tokens.forEach((element) {
     if (isDigit(element)) {
