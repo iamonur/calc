@@ -1,5 +1,10 @@
+import 'dart:collection';
+
+import 'package:calc/Calculator/Utilities/token_utilities.dart';
+
 import '../Operations/Interfaces/operations.dart';
 import './consts.dart';
+import './stack.dart';
 import '../Operations/Interfaces/number.dart';
 
 import '../Operations/ConcreteOperations/div.dart';
@@ -73,4 +78,33 @@ Operation getOp(String opname, Operation operand1,
     default:
   }
   return null as Operation;
+}
+
+Operation buildTreeFromRPN(Queue<String> tokens) {
+  Stack<Operation> st = Stack<Operation>();
+  Queue<String> output;
+
+  tokens.forEach((element) {
+    if (isDigit(element)) {
+      st.push(Number(double.parse(element)));
+    } else if (isUnary(element)) {
+      Operation op = st.pop();
+      st.push(getOp(element, op));
+    } else if (isBinary(element)) {
+      Operation a = st.pop();
+      Operation? op2;
+
+      if (st.canPop()) {
+        op2 = st.pop();
+      } else {
+        op2 = null;
+      }
+
+      st.push(getOp(element, a, operand2: op2));
+    }
+  });
+
+  tokens.clear();
+
+  return st.pop();
 }
