@@ -56,7 +56,7 @@ class _CalculatorState extends State<Calculator> {
       ),
       color: btncolor,
       shape: CircleBorder(),
-      padding: EdgeInsets.all(18),
+      padding: EdgeInsets.all(17),
     );
   }
 
@@ -64,56 +64,6 @@ class _CalculatorState extends State<Calculator> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Row(
-          children: [
-            RaisedButton(
-              onPressed: () {
-                setState(() {
-                  calcText = '';
-                  lastCalc = '';
-                  myMode = calcModes.basic;
-                  myHexMode = hexModes.hex;
-                });
-              },
-              child: const Text(
-                'Basic',
-                style: TextStyle(color: Colors.white),
-              ),
-              color: Colors.black,
-            ),
-            RaisedButton(
-              onPressed: () {
-                setState(() {
-                  calcText = '';
-                  lastCalc = '';
-                  myMode = calcModes.hex;
-                  myHexMode = hexModes.hex;
-                });
-              },
-              child: const Text(
-                'Hex',
-                style: TextStyle(color: Colors.white),
-              ),
-              color: Colors.black,
-            ),
-            RaisedButton(
-              onPressed: () {},
-              child: const Text(
-                'Scientific',
-                style: TextStyle(color: Colors.white, fontSize: 13),
-              ),
-              color: Colors.black,
-            ),
-            RaisedButton(
-              onPressed: () {},
-              child: const Text(
-                'Convert',
-                style: TextStyle(color: Colors.white),
-              ),
-              color: Colors.black,
-            ),
-          ],
-        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -212,56 +162,6 @@ class _CalculatorState extends State<Calculator> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Row(
-          children: [
-            RaisedButton(
-              onPressed: () {
-                setState(() {
-                  calcText = '';
-                  lastCalc = '';
-                  myMode = calcModes.basic;
-                  myHexMode = hexModes.hex;
-                });
-              },
-              child: const Text(
-                'Basic',
-                style: TextStyle(color: Colors.white),
-              ),
-              color: Colors.black,
-            ),
-            RaisedButton(
-              onPressed: () {
-                setState(() {
-                  calcText = '';
-                  lastCalc = '';
-                  myMode = calcModes.hex;
-                  myHexMode = hexModes.hex;
-                });
-              },
-              child: const Text(
-                'Hex',
-                style: TextStyle(color: Colors.white),
-              ),
-              color: Colors.black,
-            ),
-            RaisedButton(
-              onPressed: () {},
-              child: const Text(
-                'Scientific',
-                style: TextStyle(color: Colors.white, fontSize: 13),
-              ),
-              color: Colors.black,
-            ),
-            RaisedButton(
-              onPressed: () {},
-              child: const Text(
-                'Convert',
-                style: TextStyle(color: Colors.white),
-              ),
-              color: Colors.black,
-            ),
-          ],
-        ),
-        Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
@@ -357,6 +257,54 @@ class _CalculatorState extends State<Calculator> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        centerTitle: true,
+        title: const Text(
+          'Calc',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+      drawer: Drawer(
+          backgroundColor: Colors.black,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 30,
+              ),
+              RaisedButton(
+                onPressed: () {
+                  setState(() {
+                    calcText = '';
+                    lastCalc = '';
+                    myMode = calcModes.basic;
+                    myHexMode = hexModes.hex;
+                  });
+                },
+                child: const Text(
+                  'Basic',
+                  style: TextStyle(color: Colors.white),
+                ),
+                color: Colors.black,
+              ),
+              RaisedButton(
+                onPressed: () {
+                  setState(() {
+                    calcText = '';
+                    lastCalc = '';
+                    myMode = calcModes.hex;
+                    myHexMode = hexModes.hex;
+                  });
+                },
+                child: const Text(
+                  'Hex',
+                  style: TextStyle(color: Colors.white),
+                ),
+                color: Colors.black,
+              ),
+            ],
+          )),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4),
         child: myMode == calcModes.basic ? basicScreen() : hexScreen(),
