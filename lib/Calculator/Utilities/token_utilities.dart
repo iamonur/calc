@@ -24,9 +24,7 @@ bool isBinary(String op) {
 }
 
 bool isDigit(String token) {
-  RegExp digits =
-      RegExp(r"((?:^|\s)([+-]?[[:digit:]]*\.?[[:digit:]]+)(?=$|\s))");
-  return digits.hasMatch(token);
+  return double.tryParse(token) != null;
 }
 
 bool isOperator(String op) {

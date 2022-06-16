@@ -72,7 +72,7 @@ class Parser {
     Iterable<Match> matches = rgx.allMatches(_myExpression);
 
     matches.forEach((m) {
-      tokens.add(m.toString());
+      tokens.add(m.group(0) as String);
     });
 
     int sz = tokens.length;
@@ -157,17 +157,18 @@ class Parser {
         }
         //TODO if(!balanced) throw
       } else if (isOperator(tokens.first) || isFunction(tokens.first)) {
-        while (!st.canPop() && compare(tokens.first, st.peak()) == -1) {
+        while (st.canPop() && compare(tokens.first, st.peak()) == -1) {
           if (st.peak() != '(') {
             myTokensRPN.add(st.pop());
           } else {
             break;
           }
         }
+        st.push(tokens.first);
       }
       tokens.removeFirst();
     }
-    while (!st.canPop()) {
+    while (st.canPop()) {
       myTokensRPN.add(st.pop());
     }
   }
