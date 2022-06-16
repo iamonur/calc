@@ -380,7 +380,8 @@ class _CalculatorState extends State<Calculator> {
         if (temp.endsWith('.0')) {
           temp = temp.substring(0, temp.length - 2);
         }
-        calcText += (' = ' + temp);
+        lastCalc = calcText + (' = ' + temp);
+        calcText = '';
         calcToLastCalc = true;
         break;
       default:
@@ -389,8 +390,8 @@ class _CalculatorState extends State<Calculator> {
 
     setState(() {
       if (calcToLastCalc) {
-        lastCalc = calcText;
-        calcText = '';
+        lastCalc;
+        calcText;
       } else {
         calcText;
       }
