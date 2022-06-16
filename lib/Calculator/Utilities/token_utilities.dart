@@ -1,6 +1,12 @@
 import './consts.dart';
 
 enum prec { none, subAdd, multDiv, funcP }
+Map<prec, int> precInt = {
+  prec.none: 0,
+  prec.subAdd: 1,
+  prec.multDiv: 2,
+  prec.funcP: 3
+};
 
 Map<String, prec> precedences = {
   sub_: prec.subAdd,
@@ -45,5 +51,7 @@ int compare(String op1, String op2) {
   if (precedence(op1) == precedence(op2)) {
     return -1;
   }
-  return (precedence(op1) as int) > (precedence(op2) as int) ? 1 : -1;
+  return (precInt[precedence(op1)] as int) > (precInt[precedence(op2)] as int)
+      ? 1
+      : -1;
 }
